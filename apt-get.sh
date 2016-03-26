@@ -9,5 +9,5 @@ sudo apt-get install gv -y
 sudo apt-get install fig2eps -y
 sudo apt-get install fig2dev -y
 sudo apt-get install transfig -y
-sudo apt-get install bibtext bibtex latex-cjk-all texlive-bibtex-extra biber texlive-science texlive-fonts-recommended texlive-latex-extra -y
+sudo apt-get install latex-cjk-all texlive-bibtex-extra biber texlive-science texlive-fonts-recommended texlive-latex-extra texlive texlive-generic-recommended -y
 sudo apt-get install xfig-libs -y

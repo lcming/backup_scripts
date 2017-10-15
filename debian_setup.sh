@@ -48,10 +48,10 @@ git clone https://github.com/VundleVim/Vundle.vim.git $home/.vim/bundle/Vundle.v
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts
 cwd=`pwd`
-runuser -l  $uname -c "bash $cwd/install.sh"
+runuser $uname -c "bash $cwd/install.sh"
 mkdir $home/.config/fontconfig
 cp fontconfig/50-enable-terminess-powerline.conf $home/.config/fontconfig/conf.d
-runuser -l  $uname -c 'fc-cache -vf'
+runuser $uname -c 'fc-cache -vf'
 
 cd ../..
 rm -rf $tmp

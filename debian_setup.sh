@@ -1,8 +1,9 @@
-home=/home/lcming
+home=/home/lachming
 backup_archive=$home/Downloads/backup.zip
 backup_root=./backup
 tmp=./tmp
-uname=lcming
+uname=lachming
+xps13=yes
 # This script must be run in root
 mkdir $tmp
 cd $tmp
@@ -12,7 +13,7 @@ apt-get update
 apt-get upgrade
 
 # basic util
-apt install vim dirmngr guake terminator
+apt install vim dirmngr guake terminator -y
 
 # developer
 apt install g++ gnuplot make cmake python-dev -y
@@ -52,6 +53,17 @@ runuser $uname -c "bash $cwd/install.sh"
 mkdir $home/.config/fontconfig
 cp fontconfig/50-enable-terminess-powerline.conf $home/.config/fontconfig/conf.d
 runuser $uname -c 'fc-cache -vf'
+
+# xps13 wireless driver
+if [ xps13 == "yes" ]; then
+    echo "deb http://httpredir.debian.org/debian/ jessie main contrib non-free\n" > /etc/apt/sources.list
+    apt update && apt install firmware-brcm80211
+    modprobe -r brcmsmac
+    modprobe brcmsmac
+    wget http://en.community.dell.com/cfs-file/__key/telligent-evolution-components-attachments/00-4613-01-00-20-84-05-08/brcmfmac4350_2D00_pcie.zip
+    unzip brcmfmac4350_2D00_pcie.zip
+    mv brcmfmac4350-pcie.bin /lib/firmware/brcm/
+fi
 
 cd ../..
 rm -rf $tmp

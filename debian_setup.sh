@@ -1,8 +1,8 @@
-home=/home/lachming
+uname=lachming
+home=/home/$uname
 backup_archive=$home/Downloads/backup.zip
 backup_root=./backup
 tmp=./tmp
-uname=lachming
 xps13=yes
 # This script must be run in root
 mkdir $tmp
@@ -13,7 +13,7 @@ apt-get update
 apt-get upgrade
 
 # basic util
-apt install vim dirmngr guake terminator -y
+apt install vim dirmngr guake terminator gcin -y
 
 # developer
 apt install g++ gnuplot make cmake python-dev -y
@@ -64,6 +64,10 @@ if [ xps13 == "yes" ]; then
     unzip brcmfmac4350_2D00_pcie.zip
     mv brcmfmac4350-pcie.bin /lib/firmware/brcm/
 fi
+
+chown -R $home/Desktop
+chmod -R +rw $home/Desktop
+runuser $uname -c "chmod 400 $home/.ssh/id_rsa"
 
 cd ../..
 rm -rf $tmp
